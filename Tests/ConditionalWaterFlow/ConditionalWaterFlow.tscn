@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://cy6vgkm2vfakh"]
+
+[ext_resource type="Script" uid="uid://1dcuqi77xhfr" path="res://Tests/ConditionalWaterFlow/ConditionalWaterFlow.gd" id="1_53yxc"]
+[ext_resource type="Script" uid="uid://cl2vthfuhtfpm" path="res://Tests/ConditionalWaterFlow/ConditionalWater.gd" id="1_jdvys"]
+[ext_resource type="Script" uid="uid://b4gefe2a8ic5f" path="res://Tests/ConditionalWaterFlow/TwoWayGate.gd" id="3_53yxc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5454j"]
+sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
+sky_horizon_color = Color(0.7182, 0.72508216, 0.7388414, 1)
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_jdvys"]
+sky_material = SubResource("ProceduralSkyMaterial_5454j")
+
+[sub_resource type="Environment" id="Environment_5454j"]
+background_mode = 2
+sky = SubResource("Sky_jdvys")
+ambient_light_source = 3
+ambient_light_color = Color(0.7987912, 0.7987912, 0.79879117, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5454j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdvys"]
+size = Vector3(0.3, 2, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djtva"]
+transparency = 1
+albedo_color = Color(0, 0.1254902, 0.8235294, 0.8509804)
+
+[sub_resource type="Animation" id="Animation_53yxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGMesh3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGMesh3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yxn6c"]
+resource_name = "start_flowing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGMesh3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGMesh3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvc4y"]
+_data = {
+&"RESET": SubResource("Animation_53yxc"),
+&"start_flowing": SubResource("Animation_yxn6c")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_53yxc"]
+size = Vector3(0.3, 0.3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxn6c"]
+albedo_color = Color(1, 0.23921569, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_djtva"]
+size = Vector3(0.3, 0.3, 1)
+
+[node name="ConditionalWaterFlow" type="Node3D" unique_id=243812895 node_paths=PackedStringArray("source_water", "two_way_gate")]
+script = ExtResource("1_53yxc")
+source_water = NodePath("SourceConditionalWater")
+two_way_gate = NodePath("TwoWayGate")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=964353148]
+environment = SubResource("Environment_5454j")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=132377454]
+transform = Transform3D(1, 0, 0, 0, 0.8568705, 0.51553166, 0, -0.51553166, 0.8568705, 0, 1.8513032, 2.4077482)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=481068423]
+mesh = SubResource("BoxMesh_5454j")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=254008741]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2064664249]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer" unique_id=370330589]
+layout_mode = 2
+text = "Source water flow"
+
+[node name="CheckButton2" type="CheckButton" parent="PanelContainer/VBoxContainer" unique_id=877646079]
+layout_mode = 2
+text = "Gate control"
+
+[node name="SourceConditionalWater" type="Node3D" parent="." unique_id=151501923 node_paths=PackedStringArray("animation_player", "downstream")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5134888, -0.045077205)
+script = ExtResource("1_jdvys")
+flowing = true
+animation_player = NodePath("AnimationPlayer")
+downstream = [NodePath("../TwoWayGate")]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SourceConditionalWater" unique_id=1284074967]
+mesh = SubResource("BoxMesh_jdvys")
+material = SubResource("StandardMaterial3D_djtva")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SourceConditionalWater" unique_id=305381638]
+libraries/ = SubResource("AnimationLibrary_qvc4y")
+
+[node name="TwoWayGate" type="Node3D" parent="." unique_id=258199612 node_paths=PackedStringArray("left_visual", "right_visual", "downstream")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7351587, 0.65403414, -0.05039668)
+script = ExtResource("3_53yxc")
+left_open = true
+left_visual = NodePath("LeftCSGMesh3D")
+right_visual = NodePath("RightCSGMesh3D2")
+always_visible = true
+downstream = [NodePath("../LeftConditionalWater"), NodePath("../RightConditionalWater")]
+
+[node name="LeftCSGMesh3D" type="CSGMesh3D" parent="TwoWayGate" unique_id=1715498193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6077032e-08, 0, -0.5367293)
+mesh = SubResource("BoxMesh_53yxc")
+material = SubResource("StandardMaterial3D_yxn6c")
+
+[node name="RightCSGMesh3D2" type="CSGMesh3D" parent="TwoWayGate" unique_id=2139501575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8428774e-08, 0, -0.9511608)
+mesh = SubResource("BoxMesh_53yxc")
+material = SubResource("StandardMaterial3D_yxn6c")
+
+[node name="LeftConditionalWater" type="Node3D" parent="." unique_id=237056265]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.63901776, 0.65403414, -0.05039668)
+script = ExtResource("1_jdvys")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LeftConditionalWater" unique_id=2108934585]
+mesh = SubResource("BoxMesh_djtva")
+material = SubResource("StandardMaterial3D_djtva")
+
+[node name="RightConditionalWater" type="Node3D" parent="." unique_id=1892753240]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.6481143, 0.65403414, -0.05039668)
+script = ExtResource("1_jdvys")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="RightConditionalWater" unique_id=1362305181]
+mesh = SubResource("BoxMesh_djtva")
+material = SubResource("StandardMaterial3D_djtva")
