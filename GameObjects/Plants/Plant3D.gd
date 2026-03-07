@@ -18,6 +18,7 @@ var tween:Tween
 
 func _on_irrigated_changed() -> void:
 	start_tween(1.5)
+	irrigated_changed.emit(self)
 	
 func start_tween(durantion:float = 1.0) -> void:
 	if tween != null and tween.is_running():

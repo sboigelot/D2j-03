@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://u7qd4pgx4od8" path="res://GameObjects/Mechanisms/WarerGate.gd" id="5_t3fnf"]
 [ext_resource type="Script" uid="uid://c7kn8otnohjaf" path="res://GameObjects/Mechanisms/WaterRooter.gd" id="7_4l2uk"]
 [ext_resource type="Script" uid="uid://s08fxfxe44nw" path="res://GameObjects/Plants/Plant3D.gd" id="7_6a6ga"]
+[ext_resource type="Script" uid="uid://cbwwrx07v5ddy" path="res://GameObjects/Mechanisms/PushButton3D.gd" id="9_22r32"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsxap"]
 sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
@@ -252,6 +253,7 @@ metadata/_custom_type_script = "uid://crrnkhbt4x72v"
 [node name="WaterGate2" type="Node3D" parent="Waters" unique_id=154023228 node_paths=PackedStringArray("downstream", "gate_visual_open", "gate_visual_close", "mouse_control_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1883951, 0.8601909, 0)
 script = ExtResource("5_t3fnf")
+gate_open = true
 downstream = [NodePath("../WaterNode3D4")]
 gate_visual_open = NodePath("Area3D/OpenVisual")
 gate_visual_close = NodePath("Area3D/CloseVisual")
@@ -265,16 +267,16 @@ shape = SubResource("ConcavePolygonShape3D_t3fnf")
 
 [node name="OpenVisual" type="CSGBox3D" parent="Waters/WaterGate2/Area3D" unique_id=2076786895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12553722, 0)
-visible = false
 size = Vector3(0.1, 0.05, 0.3)
 
 [node name="CloseVisual" type="CSGBox3D" parent="Waters/WaterGate2/Area3D" unique_id=1924507918]
+visible = false
 size = Vector3(0.1, 0.3, 0.3)
 
 [node name="WaterNode3D4" type="Node3D" parent="Waters" unique_id=510737009 node_paths=PackedStringArray("mechanisms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2983358, 0.5169108, 0)
 script = ExtResource("4_kdrw2")
-mechanisms = [NodePath("../WaterGate")]
+mechanisms = [NodePath("../WaterRooter")]
 water_size = Vector3(0.3, 1, 0.3)
 material = ExtResource("5_ouuts")
 falling_water = true
@@ -283,8 +285,6 @@ metadata/_custom_type_script = "uid://crrnkhbt4x72v"
 [node name="WaterRooter" type="Node3D" parent="Waters" unique_id=223603012 node_paths=PackedStringArray("downstream", "mouse_control_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.579226, 0.0850869, 0)
 script = ExtResource("7_4l2uk")
-allow_no_output = true
-output_index = -1
 downstream = [NodePath("../WaterNode3D5"), NodePath("../WaterNode3D6")]
 mouse_control_area = NodePath("Area3D")
 metadata/_custom_type_script = "uid://c7kn8otnohjaf"
@@ -311,6 +311,27 @@ water_size = Vector3(1, 0.3, 0.3)
 material = ExtResource("5_ouuts")
 metadata/_custom_type_script = "uid://crrnkhbt4x72v"
 
+[node name="PushButton3D" type="Node3D" parent="Waters" unique_id=803119841 node_paths=PackedStringArray("pressed_visual", "released_visual", "mouse_control_area")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8926814, 0.22979622, 0)
+script = ExtResource("9_22r32")
+pressed_visual = NodePath("Area3D/PressedVisual")
+released_visual = NodePath("Area3D/ReleasedVisual")
+mouse_control_area = NodePath("Area3D")
+metadata/_custom_type_script = "uid://cbwwrx07v5ddy"
+
+[node name="Area3D" type="Area3D" parent="Waters/PushButton3D" unique_id=390586714]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Waters/PushButton3D/Area3D" unique_id=272425250]
+shape = SubResource("ConcavePolygonShape3D_t3fnf")
+
+[node name="PressedVisual" type="CSGBox3D" parent="Waters/PushButton3D/Area3D" unique_id=1462471270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12553722, 0)
+visible = false
+size = Vector3(0.1, 0.05, 0.3)
+
+[node name="ReleasedVisual" type="CSGBox3D" parent="Waters/PushButton3D/Area3D" unique_id=1519334221]
+size = Vector3(0.1, 0.3, 0.3)
+
 [node name="Plant3D" type="Node3D" parent="." unique_id=1050865392]
 transform = Transform3D(0.001, 0, 1.7484555e-10, 0, 0.001, 0, -1.7484555e-10, 0, 0.001, -0.33015966, 0, 0.87587196)
 script = ExtResource("7_6a6ga")
@@ -330,3 +351,5 @@ material = SubResource("StandardMaterial3D_pjmpm")
 [node name="CSGBox3D" type="CSGBox3D" parent="Plant3D" unique_id=1442172829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9552646, 0)
 size = Vector3(0.3, 0.1, 1.5)
+
+[connection signal="pressed" from="Waters/PushButton3D" to="Waters/WaterRooter" method="_on_player_click"]

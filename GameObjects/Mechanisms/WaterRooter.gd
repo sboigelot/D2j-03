@@ -27,7 +27,7 @@ func _on_water_intake_changed() -> void:
 func propagate_water_downstream() -> void:
 	for index in downstream.size():
 		var water:WaterNode3D = downstream[index]
-		water.flowing = index == output_index
+		water.flowing = index == output_index and _water_intakes.size() > 0
 
 func _on_player_click() -> void:
 	output_index += 1
