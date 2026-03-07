@@ -16,7 +16,7 @@ func _ready() -> void:
 	csg_mesh.material = deactivated_material
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("Another area entered:", area.name)
+	#print("Another area entered:", area.name)
 	if area is PickableObject:
 		if valid_object_tags.has(area.object_tag):
 			activating_objects.append(area)
