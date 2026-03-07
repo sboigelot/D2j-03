@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c7kn8otnohjaf" path="res://GameObjects/Mechanisms/WaterRooter.gd" id="7_4l2uk"]
 [ext_resource type="Script" uid="uid://s08fxfxe44nw" path="res://GameObjects/Plants/Plant3D.gd" id="7_6a6ga"]
 [ext_resource type="Script" uid="uid://cbwwrx07v5ddy" path="res://GameObjects/Mechanisms/PushButton3D.gd" id="9_22r32"]
+[ext_resource type="Script" uid="uid://bx6piiv1nqig0" path="res://GameObjects/Mechanisms/WaterWheel.gd" id="9_pjmpm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsxap"]
 sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
@@ -245,7 +246,7 @@ metadata/_custom_type_script = "uid://crrnkhbt4x72v"
 [node name="WaterNode3D2" type="Node3D" parent="Waters" unique_id=631720698 node_paths=PackedStringArray("mechanisms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6488212, 0.8588651, 0)
 script = ExtResource("4_kdrw2")
-mechanisms = [NodePath("../WaterGate2")]
+mechanisms = [NodePath("../WaterGate2"), NodePath("../WaterWheel")]
 water_size = Vector3(1, 0.3, 0.3)
 material = ExtResource("5_ouuts")
 metadata/_custom_type_script = "uid://crrnkhbt4x72v"
@@ -331,6 +332,22 @@ size = Vector3(0.1, 0.05, 0.3)
 
 [node name="ReleasedVisual" type="CSGBox3D" parent="Waters/PushButton3D/Area3D" unique_id=1519334221]
 size = Vector3(0.1, 0.3, 0.3)
+
+[node name="WaterWheel" type="Node3D" parent="Waters" unique_id=896594719 node_paths=PackedStringArray("rotating_visual")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3045189, 0.83213794, -0.42116612)
+script = ExtResource("9_pjmpm")
+rotating_visual = NodePath("RotatingNode3D")
+rotating_speeds = Vector3(0, 0, -25)
+metadata/_custom_type_script = "uid://bx6piiv1nqig0"
+
+[node name="RotatingNode3D" type="Node3D" parent="Waters/WaterWheel" unique_id=506645232]
+transform = Transform3D(-0.91624045, 0.40062878, 0, -0.40062878, -0.91624045, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Waters/WaterWheel/RotatingNode3D" unique_id=1497095397]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+radius = 0.3
+height = 0.1
+sides = 5
 
 [node name="Plant3D" type="Node3D" parent="." unique_id=1050865392]
 transform = Transform3D(0.001, 0, 1.7484555e-10, 0, 0.001, 0, -1.7484555e-10, 0, 0.001, -0.33015966, 0, 0.87587196)
