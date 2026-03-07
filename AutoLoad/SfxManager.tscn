@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cvsta5viri575"]
+
+[ext_resource type="Script" uid="uid://bhcex1i0i5ei8" path="res://AutoLoad/SfxManager.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://l1ud7r3p5wkr" path="res://Assets/SoundFx/click.ogg" id="2_mq01n"]
+
+[node name="SfxManager" type="Node" unique_id=561477171]
+script = ExtResource("1")
+sample_collection = Array[AudioStream]([ExtResource("2_mq01n")])

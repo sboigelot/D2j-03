@@ -15,6 +15,15 @@ run/main_scene="uid://cy6vgkm2vfakh"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://AudioBusLayout.tres"
+
+[autoload]
+
+Music="*uid://b8a5arduddcoi"
+SfxManager="*uid://cvsta5viri575"
+
 [display]
 
 window/stretch/mode="canvas_items"

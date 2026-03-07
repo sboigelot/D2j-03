@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b8a5arduddcoi"]
+
+[ext_resource type="Script" uid="uid://dyprxdhpbhqgg" path="res://AutoLoad/Music.gd" id="1_f2eln"]
+[ext_resource type="AudioStream" uid="uid://ppsw1260jal8" path="res://Assets/Musics/ninfa_main-theme_testExport_2026-03-06.mp3" id="2_asxkp"]
+
+[node name="Music" type="Node" unique_id=152685918 node_paths=PackedStringArray("audio")]
+script = ExtResource("1_f2eln")
+audio = NodePath("AudioStreamPlayer")
+play_on_start = true
+playlist = [ExtResource("2_asxkp")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=299596102]
+autoplay = true
+bus = &"Music"

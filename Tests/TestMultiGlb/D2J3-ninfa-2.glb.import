@@ -48,6 +48,11 @@ _subresources={
 "save_to_file/fallback_path": "res://Tests/TestMultiGlb/2/palm.tres",
 "save_to_file/path": "uid://bvpxiqmknnnta"
 }
+},
+"nodes": {
+"PATH:palm/Skeleton3D/palm": {
+"generate/physics": true
+}
 }
 }
 gltf/naming_version=2

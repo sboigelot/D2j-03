@@ -13,7 +13,9 @@ func _ready() -> void:
 	check_button_2.toggled.connect(_on_check_2_button_toggled)
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
+	SfxManager.play("click")
 	source_water.flowing = toggled_on
 	
 func _on_check_2_button_toggled(toggled_on: bool) -> void:
+	SfxManager.play("click")
 	two_way_gate.toggle()
