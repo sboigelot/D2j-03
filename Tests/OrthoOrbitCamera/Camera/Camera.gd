@@ -1,4 +1,3 @@
-@tool
 extends Camera3D
 
 ###############################################################################
@@ -13,7 +12,6 @@ var tilt : float = 0 # UNIT: Radians
 var ortho_scale_min : float = 0.1 # UNIT: m
 var ortho_scale_max : float = 4.0 # UNIT: m
 var ortho_scale_default : float = 4.0 # UNIT: m
-var zoom_speed : float = 4.0 # UNIT: m
 
 ###############################################################################
 ###############################################################################
@@ -22,8 +20,6 @@ var zoom_speed : float = 4.0 # UNIT: m
 ###############################################################################
 var _ortho_scale_last : float = self.ortho_scale_default # UNIT: m
 var _ortho_scale_requested : float = self.ortho_scale_default # UNIT: m
-var _request_zoom_in : bool = false
-var _request_zoom_out : bool = false
 
 ###############################################################################
 ###############################################################################
@@ -45,7 +41,7 @@ func _manage_zoom(a_delta : float) -> void:
 	# DESCRIPTION: Only process when last and requested ortho scale are not
 	# identical
 	if self._ortho_scale_last != self._ortho_scale_requested:
-		print("Last != requested")
+		#print("Last != requested")
 
 		# DESCRIPTION: Determine whether the requested scale is within the 
 		# the allowed range
@@ -134,9 +130,6 @@ func initialize(a_data : Dictionary) -> void:
 	if a_data.has("tilt"):
 		self.set_tilt(a_data.tilt)
 
-	if a_data.has("zoom_speed"):
-		self.set_zoom_speed(a_data.zoom_speed)
-
 	if a_data.has("ortho_scale_min"):
 		self.ortho_scale_min = a_data.ortho_scale_min
 
@@ -160,37 +153,3 @@ func _ready() -> void:
 	self.set_zoom_level(self.ortho_scale_default)
 	self._update_position()
 	self._update_tilt()
-
-###############################################################################
-###############################################################################
-## SECTION: Godot Runtime Function Overrides ##################################
-###############################################################################
-###############################################################################
-# REMARK: Zooming requests need to be handle in input, as otherwise the mouse
-# wheel input would not be registered. In theory, it would be possible to hard
-# code it to mouse wheel, but that would mean unnecessary logic duplication for
-# keyboard and potential controller inputs
-# REMARK: Mouse wheel inputs are registered twice (start and stop). 
-# TODO: Verify whether double mouse input detection is an issue
-func _input(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "camera_zoom_in"):
-		print("Request zoom in")
-		self._request_zoom_in = true
-
-	if InputMap.event_is_action(event, "camera_zoom_out"):
-		print("Request zoom out")
-		self._request_zoom_out = true
-
-func _process(delta: float) -> void:
-	# DESCRIPTION: Handle camera zoom in
-	if self._request_zoom_in:
-		self._ortho_scale_requested -= delta * self.zoom_speed
-		self._request_zoom_in = false
-			
-	# DESCRIPTION: Handle camera zoom out
-	if self._request_zoom_out:
-		self._ortho_scale_requested += delta * self.zoom_speed
-		self._request_zoom_out = false
-	
-	# DESCRIPTION: Call management functions
-	self._manage_zoom(delta)

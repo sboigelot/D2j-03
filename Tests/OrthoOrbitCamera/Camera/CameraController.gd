@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 ###############################################################################
@@ -16,52 +15,22 @@ extends Node3D
 @export_range(0, 10, 0.1, "suffix:m") var ortho_scale_min : float = 0.1
 @export_range(0, 100, 0.1, "suffix:m") var ortho_scale_max : float = 4.0
 @export_range(0, 10, 0.1, "suffix:m") var ortho_scale_default : float = 4.0
-@export_range(0, 10, 0.1, "suffix:m/s") var zoom_speed : float = 4.0
+@export_range(0, 10, 0.1, "suffix:m/s") var zoom_speed : float = 6.0
+
+@export_category("Camera Rotation")
+@export var camera_rotation_keyboard_speed:float = 5.0
+@export var camera_rotation_mouse_speed:float = 0.5
 
 @onready var _Camera : Camera3D = $Camera3D 
 
 var _mouse_dragged : bool = false
 var _lastMousePosition = Vector2(0, 0)
 
-var _request_rotation_clockwise : bool = false
-var _request_rotation_counterclockwise : bool = false
-
 func get_zoom_level() -> float:
 	return self._Camera.get_zoom_level()
 
 func get_tilt() -> float:
 	return self._Camera.get_tilt()
-
-func _manage_rotation(a_delta : float) -> void:
-	if self._request_rotation_clockwise:
-		self.rotation.y = self.rotation.y + a_delta * 500
-		self._request_rotation_clockwise = false
-
-	if self._request_rotation_clockwise:
-		self.rotation.y = self.rotation.y - a_delta * 500
-		self._request_rotation_clockwise = false
-
-	print("Rotation: ", self.rotation.y)
-
-
-func _input(event : InputEvent) -> void:
-	# REMARK: Currently just a place holder! Not completely implemented yet
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			self._mouse_dragged = true
-			self._lastMousePosition = get_viewport().get_mouse_position()
-
-		if event.is_released():
-			self._mouse_dragged = false
-
-	if InputMap.event_is_action(event, "camera_rotate_clockwise"):
-		self._request_rotation_clockwise = true
-		print("Clockwise")
-
-	if InputMap.event_is_action(event,"camera_rotate_counterclockwise"):
-		self._request_rotation_counterclockwise = true
-		print("Counterclockwise")
-
 
 func _ready() -> void:
 	# DESCRIPTION: Pass relevant settings to Camera
@@ -76,9 +45,38 @@ func _ready() -> void:
 			"ortho_scale_min": self.ortho_scale_min,
 			"ortho_scale_max": self.ortho_scale_max,
 			"ortho_scale_default": self.ortho_scale_default,
-			"zoom_speed": self.zoom_speed
 		}
 	)
 
 func _process(delta : float) -> void:
-	self._manage_rotation(delta)
+	_process_zoom(delta)
+	_process_rotation(delta)
+	
+func _process_zoom(delta : float) -> void:
+	if Input.is_action_just_pressed("camera_zoom_in"):
+		_Camera._ortho_scale_requested -= delta * zoom_speed
+		
+	if Input.is_action_just_pressed("camera_zoom_out"):
+		_Camera._ortho_scale_requested += delta * zoom_speed
+
+	_Camera._manage_zoom(delta)
+	
+func _process_rotation(delta : float) -> void:
+	if Input.is_action_pressed("camera_drag"):
+		var mouse_position = get_viewport().get_mouse_position()
+		if not _mouse_dragged:
+			_mouse_dragged = true
+		else:
+			var mouse_movement:float = _lastMousePosition.x - mouse_position.x
+			rotation.y += delta * mouse_movement * camera_rotation_mouse_speed
+			
+		_lastMousePosition = mouse_position
+		
+	if Input.is_action_just_released("camera_drag"):
+		_mouse_dragged = false
+		
+	if Input.is_action_pressed("camera_rotate_clockwise"):
+		rotation.y += delta * camera_rotation_keyboard_speed
+		
+	if Input.is_action_pressed("camera_rotate_counterclockwise"):
+		rotation.y -= delta * camera_rotation_keyboard_speed
