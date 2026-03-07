@@ -19,7 +19,16 @@ ambient_light_source = 3
 ambient_light_color = Color(0.7987912, 0.7987912, 0.79879117, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5454j"]
-size = Vector3(10, 0.1, 10)
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dujjj"]
+albedo_color = Color(0.24705882, 0.33333334, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d8fet"]
+size = Vector3(10, 2, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7axug"]
+albedo_color = Color(0.68235296, 0.33333334, 0, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kudja"]
 data = PackedVector3Array(-5, 0.05, -5, -5, -0.05, -5, 5, -0.05, -5, -5, 0.05, 5, -5, -0.05, 5, -5, -0.05, -5, -5, -0.05, 5, 5, -0.05, 5, -5, -0.05, -5, -5, 0.05, -5, -5, 0.05, 5, -5, -0.05, -5, -5, 0.05, 5, -5, 0.05, -5, 5, 0.05, -5, -5, 0.05, 5, 5, 0.05, 5, -5, -0.05, 5, 5, -0.05, 5, 5, -0.05, -5, -5, -0.05, -5, 5, 0.05, -5, 5, -0.05, -5, 5, -0.05, 5, 5, 0.05, 5, 5, -0.05, 5, -5, -0.05, 5, 5, 0.05, -5, -5, 0.05, -5, 5, -0.05, -5, 5, 0.05, 5, -5, 0.05, 5, 5, 0.05, -5, 5, 0.05, 5, 5, 0.05, -5, 5, -0.05, 5)
@@ -64,11 +73,20 @@ environment = SubResource("Environment_5454j")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=132377454]
 transform = Transform3D(1, 0, 0, 0, 0.8568705, 0.51553166, 0, -0.51553166, 0.8568705, 0, 1.8513032, 2.4077482)
+projection = 1
+size = 0.83
 
 [node name="TerrainTest" type="StaticBody3D" parent="." unique_id=1911769989]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="TerrainTest" unique_id=481068423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40359175, 0)
 mesh = SubResource("BoxMesh_5454j")
+material = SubResource("StandardMaterial3D_dujjj")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="TerrainTest" unique_id=2019775035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.891388, 0)
+mesh = SubResource("BoxMesh_d8fet")
+material = SubResource("StandardMaterial3D_7axug")
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="TerrainTest" unique_id=300928512]
 shape = SubResource("ConcavePolygonShape3D_kudja")

@@ -339,6 +339,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9099684, 0)
 radius = 0.4
 material = SubResource("StandardMaterial3D_4d8l2")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="Plant" unique_id=950449756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9552646, 0)
+size = Vector3(1, 0.1, 2)
+
 [node name="RightConditionalWater" type="Node3D" parent="." unique_id=1892753240 node_paths=PackedStringArray("animation_player")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.6481143, 0.65403414, -0.05039668)
 script = ExtResource("1_jdvys")
