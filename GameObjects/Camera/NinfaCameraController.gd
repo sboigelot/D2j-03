@@ -133,9 +133,13 @@ func _process_rotation(delta : float) -> void:
 			_mouse_right_button_dragged = true
 		else:
 			var mouse_movement:Vector2 = _lastMousePosition - mouse_position
-			var displacement: Vector3 = Vector3(mouse_movement.y, 0, mouse_movement.x) * delta * camera_move_mouse_speed
+			var displacement: Vector3 = Vector3(-mouse_movement.x, 0, mouse_movement.y) * delta * camera_move_mouse_speed #Vector3(mouse_movement.y, 0, mouse_movement.x) * delta * camera_move_mouse_speed
 			displacement = displacement.rotated(Vector3.UP, camera.rotation.y)
-			position = clamp(position + displacement, min_pivot_center, max_pivot_center)
+			position = Vector3(
+				clamp(position.x + displacement.x, min_pivot_center.x, max_pivot_center.x),
+				clamp(position.y + displacement.y, min_pivot_center.y, max_pivot_center.y),
+				clamp(position.z + displacement.z, min_pivot_center.z, max_pivot_center.z)
+			) #clamp(position + displacement, min_pivot_center, max_pivot_center)
 			#if allow_elevation_change:
 				#position.y += delta * mouse_movement.y * elevation_speed
 		_lastMousePosition = mouse_position
