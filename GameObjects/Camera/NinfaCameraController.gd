@@ -61,6 +61,8 @@ var _lastMousePosition = Vector2(0, 0)
 const zoom_tween_duration:float = 0.1
 var _zoom_tween:Tween
 var _size_last : float = size # UNIT: m
+
+var _mouse_wheel: float
 		
 func _process(delta : float) -> void:
 	if Engine.is_editor_hint():
@@ -69,12 +71,22 @@ func _process(delta : float) -> void:
 	_process_zoom(delta)
 	_process_rotation(delta)
 	
+func _unhandled_input(event: InputEvent) -> void:
+	_mouse_wheel = 0
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_mouse_wheel = -event.factor
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_mouse_wheel = event.factor
+	
 func _process_zoom(delta : float) -> void:
+	
+	size_requested -= _mouse_wheel * delta * zoom_speed
 		
-	if Input.is_action_just_pressed("camera_zoom_in"):
+	if Input.is_action_pressed("camera_zoom_in"):
 		size_requested -= delta * zoom_speed
 		
-	if Input.is_action_just_pressed("camera_zoom_out"):
+	if Input.is_action_pressed("camera_zoom_out"):
 		size_requested += delta * zoom_speed
 
 	size_requested = clamp(size_requested, size_min, size_max)
