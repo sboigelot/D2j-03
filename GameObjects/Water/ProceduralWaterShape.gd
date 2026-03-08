@@ -29,6 +29,7 @@ func _init() -> void:
 	if csg_box == null:
 		csg_box = CSGBox3D.new()
 		csg_box.name = "_csgbox3d"
+		csg_box.material = material
 		add_child(csg_box, false, Node.InternalMode.INTERNAL_MODE_BACK)
 		change_csg_box_size()
 		
