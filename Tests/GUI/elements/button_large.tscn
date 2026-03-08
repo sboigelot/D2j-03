@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cksf04lj3brhi"]
+
+[ext_resource type="Script" uid="uid://coky35hkmalew" path="res://Tests/GUI/elements/ButtonLarge.gd" id="1_ee05y"]
+
+[node name="Button" type="Button" unique_id=1788893900]
+custom_minimum_size = Vector2(120, 0)
+script = ExtResource("1_ee05y")

@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bhcex1i0i5ei8" path="res://AutoLoad/SfxManager.gd" id="1"]
 [ext_resource type="AudioStream" uid="uid://l1ud7r3p5wkr" path="res://Assets/SoundFx/click.ogg" id="2_mq01n"]
+[ext_resource type="AudioStream" uid="uid://drdwgl2rfwt72" path="res://Assets/SoundFx/drop_003.ogg" id="3_s041m"]
+[ext_resource type="AudioStream" uid="uid://du2wdyc6ooqn7" path="res://Assets/SoundFx/switch_005.ogg" id="4_gxvsj"]
 
 [node name="SfxManager" type="Node" unique_id=561477171]
 script = ExtResource("1")
-sample_collection = Array[AudioStream]([ExtResource("2_mq01n")])
+sample_collection = Array[AudioStream]([ExtResource("2_mq01n"), ExtResource("3_s041m"), ExtResource("4_gxvsj")])

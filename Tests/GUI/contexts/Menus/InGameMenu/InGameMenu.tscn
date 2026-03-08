@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dh3ere1xa7kan"]
+
+[ext_resource type="Script" uid="uid://kylcetj7jemo" path="res://Tests/GUI/contexts/Menus/InGameMenu/InGameMenu.gd" id="1_8k0sf"]
+
+[node name="inGameMenu" type="Control" unique_id=52351211]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8k0sf")

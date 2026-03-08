@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://844v0or2pvgk"]
+
+[ext_resource type="Script" uid="uid://b508i3bj25ios" path="res://Tests/GUI/GUI.gd" id="1_57b8u"]
+[ext_resource type="PackedScene" uid="uid://cy3y8cvh8bj56" path="res://Tests/GUI/contexts/Menus/MainMenu/MainMenu.tscn" id="2_57b8u"]
+[ext_resource type="PackedScene" uid="uid://dh3ere1xa7kan" path="res://Tests/GUI/contexts/Menus/InGameMenu/InGameMenu.tscn" id="3_irysh"]
+
+[node name="UI" type="CanvasLayer" unique_id=857789566]
+layer = 10
+script = ExtResource("1_57b8u")
+
+[node name="mainMenu" parent="." unique_id=279321132 instance=ExtResource("2_57b8u")]
+
+[node name="inGameMenu" parent="." unique_id=52351211 instance=ExtResource("3_irysh")]
