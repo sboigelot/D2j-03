@@ -99,8 +99,8 @@ func _ready() -> void:
 
 	# DESCRIPTION: Remove exit button in web export
 	if OS.has_feature("web"):
-		_buttonReferences.exit.reference.queue_free()
-		_buttonReferences.erase("exit")
+		self._buttonReferences.exit.reference.queue_free()
+		self._buttonReferences.erase("exit")
 
 	for _key in self._buttonReferences.keys():
 		self._buttonReferences[_key].reference.initialize(

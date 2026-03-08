@@ -1,9 +1,20 @@
 [gd_scene format=3 uid="uid://dh3ere1xa7kan"]
 
 [ext_resource type="Script" uid="uid://kylcetj7jemo" path="res://Tests/GUI/contexts/Menus/InGameMenu/InGameMenu.gd" id="1_8k0sf"]
+[ext_resource type="PackedScene" uid="uid://cksf04lj3brhi" path="res://Tests/GUI/elements/button_large.tscn" id="2_38ire"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38ire"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.0871133, 0.238785, 0.21601197, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="inGameMenu" type="Control" unique_id=52351211]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,3 +22,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8k0sf")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1082134579]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -24.5
+offset_right = 22.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_38ire")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=413912725]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1898845842]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="resumeGame" parent="PanelContainer/VBoxContainer" unique_id=1788893900 instance=ExtResource("2_38ire")]
+layout_mode = 2
+text = "Resume Game"
+
+[node name="settings" parent="PanelContainer/VBoxContainer" unique_id=841161012 instance=ExtResource("2_38ire")]
+layout_mode = 2
+text = "Settings"
+
+[node name="returnToMainMenu" parent="PanelContainer/VBoxContainer" unique_id=658609613 instance=ExtResource("2_38ire")]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[node name="exitToSystem" parent="PanelContainer/VBoxContainer" unique_id=614851535 instance=ExtResource("2_38ire")]
+layout_mode = 2
+text = "Exit to System"
