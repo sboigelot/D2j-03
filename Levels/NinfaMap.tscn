@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://8r4kkq3srcvb" path="res://GameObjects/Pickables/PickableObject.gd" id="11_q6g4c"]
 [ext_resource type="Script" uid="uid://b3l0tt8aqk02u" path="res://GameObjects/Pickables/PickableObjectPedestal.gd" id="13_mkd14"]
 [ext_resource type="Script" uid="uid://bx6piiv1nqig0" path="res://GameObjects/Mechanisms/WaterWheel.gd" id="15_hf6v2"]
+[ext_resource type="Script" uid="uid://8qidw5c870i" path="res://Levels/DebugLabel.gd" id="16_e1fsn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsxap"]
 sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
@@ -30,6 +31,9 @@ background_color = Color(0.30588236, 0.39607844, 0.5254902, 1)
 sky = SubResource("Sky_jdvys")
 ambient_light_source = 3
 ambient_light_color = Color(0.7987912, 0.7987912, 0.79879117, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unkgr"]
+albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_elb2t"]
 size = Vector3(28, 1, 14)
@@ -226,6 +230,11 @@ fov = 25.0
 size = 30.0
 script = ExtResource("3_8rtkp")
 metadata/_custom_type_script = "uid://bjsf6caogbjsg"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NinfaCameraController" unique_id=197999013]
+material_override = SubResource("StandardMaterial3D_unkgr")
+height = 30.0
+cone = true
 
 [node name="Mouse3DCursor" type="CSGSphere3D" parent="." unique_id=1911056028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.257654, 0)
@@ -1481,7 +1490,6 @@ shape = SubResource("ConcavePolygonShape3D_e1fsn")
 [node name="WaterGate1" type="Node3D" parent="Mecanisms/Peak" unique_id=1353394419 node_paths=PackedStringArray("downstream", "gate_visual_open", "gate_visual_close", "mouse_control_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41009066, 4.9322643, -1.5)
 script = ExtResource("10_tnwec")
-open_on_player_click = null
 downstream = [NodePath("../../../Terrain/CSGCombiner3D/Canals/CSGBox3D33/water_node")]
 gate_visual_open = NodePath("Area3D/OpenVisual")
 gate_visual_close = NodePath("Area3D/CloseVisual")
@@ -1526,7 +1534,6 @@ shape = SubResource("ConcavePolygonShape3D_pjmpm")
 [node name="WaterGate2" type="Node3D" parent="Mecanisms/Plateau" unique_id=1562748716 node_paths=PackedStringArray("downstream", "gate_visual_open", "gate_visual_close", "mouse_control_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4780471, 1.9459068, 8.480103)
 script = ExtResource("10_tnwec")
-open_on_player_click = null
 downstream = [NodePath("../../../Terrain/CSGCombiner3D/Canals/CSGBox3D6/water_node")]
 gate_visual_open = NodePath("Area3D/OpenVisual")
 gate_visual_close = NodePath("Area3D/CloseVisual")
@@ -1568,6 +1575,8 @@ height = 0.1
 material = SubResource("StandardMaterial3D_m7op7")
 
 [node name="Area3D" type="Area3D" parent="Mecanisms/Plateau/WaterGate3Pedestal" unique_id=1679323137]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mecanisms/Plateau/WaterGate3Pedestal/Area3D" unique_id=1294072457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.012725353, 0)
@@ -1712,3 +1721,10 @@ material = SubResource("StandardMaterial3D_6a6ga")
 transform = Transform3D(0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 0, 0, 0, 1, -0.7795553, 0.06462306, -0.79999995)
 size = Vector3(1.25, 0.3, 1)
 material = SubResource("StandardMaterial3D_6a6ga")
+
+[node name="Label" type="Label" parent="." unique_id=2112769846]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "Test"
+script = ExtResource("16_e1fsn")
