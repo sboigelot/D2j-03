@@ -16,6 +16,7 @@ signal deactivated(object_pedestal:PickableObjectPedestal)
 		is_activated = value
 		
 		if is_activated:
+			SfxManager.play("achievement")
 			if activation_visual != null:
 				activation_visual.material = activated_material
 			activated_no_params.emit()
