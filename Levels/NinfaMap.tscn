@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqq7gwpjgt0re"]
 
 [ext_resource type="Script" uid="uid://btbapy82k738d" path="res://GameObjects/Pickables/PickableObjectController.gd" id="1_elb2t"]
+[ext_resource type="Script" uid="uid://dgv5q6b2tems7" path="res://Levels/Level.gd" id="1_i8sri"]
 [ext_resource type="Script" uid="uid://co0xkfphq1e30" path="res://GameObjects/Camera/NinfaCameraController.gd" id="2_elb2t"]
 [ext_resource type="Script" uid="uid://bjsf6caogbjsg" path="res://GameObjects/Camera/ToolCamera3D.gd" id="3_8rtkp"]
 [ext_resource type="Material" uid="uid://k05drf1eukxj" path="res://Assets/Materials/ground_grass_light.material.tres" id="4_ouuts"]
@@ -152,6 +153,9 @@ size = Vector3(0.6, 0.3, 8)
 [sub_resource type="BoxMesh" id="BoxMesh_i8sri"]
 size = Vector3(0.6, 0.3, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_i8sri"]
+size = Vector3(100, 1, 100)
+
 [sub_resource type="BoxMesh" id="BoxMesh_j47b8"]
 size = Vector3(14.7, 3.5, 10)
 
@@ -255,7 +259,8 @@ _data = {
 }
 point_count = 10
 
-[node name="TestMap" type="Node3D" unique_id=1400283384]
+[node name="NinfaMap" type="Node3D" unique_id=1400283384]
+script = ExtResource("1_i8sri")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1944224997]
 environment = SubResource("Environment_j6adh")
@@ -267,7 +272,7 @@ transform = Transform3D(0.5245804, 0.64234495, -0.5587561, 0, 0.6563093, 0.75449
 transform = Transform3D(0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, 0.81915206, 0, 0, 0)
 script = ExtResource("2_elb2t")
 camera = NodePath("ToolCamera3D2")
-camera_position = Vector3(63.866, 50, -12.279)
+camera_position = Vector3(63.866, 40, -12.279)
 camera_rotation = Vector3(0.61086524, -1.7627826, 0)
 size_max = 50.0
 size = 25.0
@@ -277,7 +282,7 @@ allow_pivot_movement = false
 metadata/_custom_type_script = "uid://co0xkfphq1e30"
 
 [node name="ToolCamera3D2" type="Camera3D" parent="NinfaCameraController" unique_id=1897780768]
-transform = Transform3D(-0.19080903, -0.56303823, 0.8041019, 0, 0.81915206, 0.57357645, -0.98162717, 0.10944357, -0.1563016, 63.866, 50, -12.279)
+transform = Transform3D(-0.19080903, -0.56303823, 0.8041019, 0, 0.81915206, 0.57357645, -0.98162717, 0.10944357, -0.1563016, 63.866, 40, -12.279)
 fov = 25.0
 size = 30.0
 script = ExtResource("3_8rtkp")
@@ -677,6 +682,12 @@ radius = 1.0
 height = 0.1
 sides = 5
 
+[node name="InfinitePlaneStaticBody3D" type="StaticBody3D" parent="." unique_id=1017085931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InfinitePlaneStaticBody3D" unique_id=677141021]
+shape = SubResource("BoxShape3D_i8sri")
+
 [node name="Terrain" type="StaticBody3D" parent="." unique_id=1378914217]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Terrain" unique_id=33273695]
@@ -960,6 +971,7 @@ material = ExtResource("7_6a6ga")
 
 [node name="post_boulder_water_node" type="Node3D" parent="Terrain/CSGCombiner3D/Canals/CSGBox3D30" unique_id=1016628562 node_paths=PackedStringArray("downstream")]
 script = ExtResource("8_22r32")
+prevent_flowing = true
 downstream = [NodePath("../../CSGBox3D11/water_node"), NodePath("../../CSGBox3D13/water_node")]
 water_size = Vector3(4.135803, 0.31, 0.6)
 material = ExtResource("9_pjmpm")
@@ -1714,8 +1726,6 @@ activation_visual = NodePath("CSGCylinder3D")
 deactivated_material = SubResource("StandardMaterial3D_m7op7")
 activated_material = SubResource("StandardMaterial3D_q6g4c")
 controlled_mechanisms = [NodePath("../WaterGate3")]
-destroy_token_on_activated = null
-destroy_self_on_activated = null
 metadata/_custom_type_script = "uid://b3l0tt8aqk02u"
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Mecanisms/Plateau/WaterGate3Pedestal" unique_id=1983129087]
@@ -1945,8 +1955,6 @@ activation_visual = NodePath("CSGCylinder3D")
 deactivated_material = SubResource("StandardMaterial3D_htwqe")
 activated_material = SubResource("StandardMaterial3D_q6g4c")
 controlled_repairables = [NodePath("../RepairablePart1")]
-destroy_token_on_activated = null
-destroy_self_on_activated = null
 metadata/_custom_type_script = "uid://b3l0tt8aqk02u"
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Mecanisms/Aquaduct/RepairablePart1Pedestal" unique_id=795648677]
@@ -2000,8 +2008,6 @@ activation_visual = NodePath("CSGCylinder3D")
 deactivated_material = SubResource("StandardMaterial3D_j47b8")
 activated_material = SubResource("StandardMaterial3D_q6g4c")
 controlled_repairables = [NodePath("../RepairablePart2")]
-destroy_token_on_activated = null
-destroy_self_on_activated = null
 metadata/_custom_type_script = "uid://b3l0tt8aqk02u"
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Mecanisms/Aquaduct/RepairablePart2Pedestal" unique_id=1389215413]
@@ -2210,9 +2216,8 @@ script = ExtResource("16_e1fsn")
 [node name="Plants" type="Node3D" parent="." unique_id=1196766605]
 
 [node name="Plant3D" type="Node3D" parent="Plants" unique_id=2138650120]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.558, 2, 7.064)
+transform = Transform3D(-0.001, 0, -8.742278e-11, 0, 0.001, 0, 8.742278e-11, 0, -0.001, -2.558, 2, 7.064)
 script = ExtResource("28_adm7q")
-irrigated = true
 metadata/_custom_type_script = "uid://s08fxfxe44nw"
 
 [node name="blockbench_export" parent="Plants/Plant3D" unique_id=15569629 instance=ExtResource("29_i8sri")]

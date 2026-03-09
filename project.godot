@@ -23,6 +23,7 @@ buses/default_bus_layout="res://AudioBusLayout.tres"
 
 Music="*uid://b8a5arduddcoi"
 SfxManager="*uid://cvsta5viri575"
+Gui="*uid://844v0or2pvgk"
 
 [display]
 

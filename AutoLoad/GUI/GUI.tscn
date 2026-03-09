@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://844v0or2pvgk"]
+
+[ext_resource type="Script" uid="uid://b508i3bj25ios" path="res://AutoLoad/GUI/GUI.gd" id="1_e0dea"]
+[ext_resource type="PackedScene" uid="uid://cy3y8cvh8bj56" path="res://AutoLoad/GUI/contexts/Menus/MainMenu/MainMenu.tscn" id="2_6fgwi"]
+
+[node name="GUI" type="CanvasLayer" unique_id=857789566]
+layer = 10
+script = ExtResource("1_e0dea")
+
+[node name="mainMenu" parent="." unique_id=279321132 instance=ExtResource("2_6fgwi")]
+
+[node name="OpenMenuButton" type="Button" parent="." unique_id=2145938385]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Menu"
+
+[connection signal="pressed" from="OpenMenuButton" to="." method="_on_open_menu_button_pressed"]

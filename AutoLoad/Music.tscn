@@ -7,7 +7,7 @@
 script = ExtResource("1_f2eln")
 audio = NodePath("AudioStreamPlayer")
 play_on_start = true
-playlist = [ExtResource("2_asxkp")]
+playlist = Array[AudioStream]([ExtResource("2_asxkp")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=299596102]
 autoplay = true

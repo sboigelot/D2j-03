@@ -32,8 +32,8 @@ func play(sample_name:String)->void:
 #	print("playing %s"%sample_name)
 	if active_players.has(sample_name):											# Same sample is already playing
 		var player:AudioStreamPlayer = active_players[sample_name]
-		if player.get_playback_position() > retrigger_time:						# Checks if same sample has played at least certain length
-			player.play()
+		#if player.get_playback_position() > retrigger_time:						# Checks if same sample has played at least certain length
+		player.play()
 	else:
 		if !free_players.is_empty():												# There are un-active players
 			var player:AudioStreamPlayer = free_players.pop_back()

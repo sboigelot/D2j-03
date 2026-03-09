@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cwmmaqe8ywr55"]
+
+[ext_resource type="Script" uid="uid://cnosdhuthhw7o" path="res://AutoLoad/GUI/contexts/Menus/MainMenu/AudioSettings.gd" id="1_whgg6"]
+[ext_resource type="Script" uid="uid://cp80e7inpguq8" path="res://AutoLoad/GUI/contexts/Menus/MainMenu/AudioBusController.gd" id="2_crf4k"]
+
+[node name="MarginContainer" type="MarginContainer" unique_id=353658323]
+theme_override_constants/margin_left = 20
+script = ExtResource("1_whgg6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1155978643]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=2132120958]
+layout_mode = 2
+bbcode_enabled = true
+text = "Audio"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=296775874]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1182748788]
+layout_mode = 2
+
+[node name="MasterControl" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1179480209]
+layout_mode = 2
+script = ExtResource("2_crf4k")
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/MasterControl" unique_id=134362524]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MasterControl" unique_id=1737183325]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Master:"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MasterControl" unique_id=510419272]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="MusicControl" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=342191751]
+layout_mode = 2
+script = ExtResource("2_crf4k")
+bus_name = "Music"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/MusicControl" unique_id=1860887183]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MusicControl" unique_id=1051192264]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Music:"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MusicControl" unique_id=66916138]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="SFXControl" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=2085092316]
+layout_mode = 2
+script = ExtResource("2_crf4k")
+bus_name = "SFX"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/SFXControl" unique_id=823320012]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/SFXControl" unique_id=671478567]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "SoundFx:"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/SFXControl" unique_id=1464846050]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05

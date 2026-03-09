@@ -20,6 +20,7 @@ var is_playing:bool = false
 @export var previous_random_picks = []
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	rng.randomize()
 	audio.finished.connect(on_audio_finished)
 	if play_on_start:
