@@ -56,6 +56,8 @@ signal deactivated(object_pedestal:PickableObjectPedestal)
 
 var activating_objects: Array[PickableObject]
 
+var is_tweening_for_deletion:bool = false
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: Array
 	
@@ -102,10 +104,25 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 					area.global_position = auto_center_pickable_marker_3d.global_position
 						
 				if destroy_self_on_activated:
-					queue_free()
+					start_deletion_tween()
+
+func start_deletion_tween():
+	if is_tweening_for_deletion:
+		return
+	is_tweening_for_deletion = true
+	
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3.ONE * 1.1, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector3.ONE * 0.9, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector3.ONE * 1.2, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector3.ONE * 0.8, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector3.ONE * 1.5, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector3.ONE * 0.1, 0.2).set_trans(Tween.TRANS_BOUNCE)
+	await tween.finished
+	queue_free()
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
-	if is_queued_for_deletion():
+	if is_tweening_for_deletion or is_queued_for_deletion():
 		return
 	if activating_objects.has(area): 
 		activating_objects.erase(area)
