@@ -4,7 +4,7 @@ signal ninfa_gui_menu_active(menu_active:bool)
 
 var state : int = NINFA_GUI.STATES.MAIN_MENU
 
-@onready var open_menu_button: Button = $OpenMenuButton
+@onready var open_menu_button: Button = $MarginContainer/OpenMenuButton
 
 @onready var references : Dictionary = {
 	str(NINFA_GUI.STATES.MAIN_MENU): $mainMenu
@@ -49,6 +49,11 @@ func _ready() -> void:
 	# DESCRIPTION: Connect to the request signal of all the contexts 
 	for _key in self.references.keys():
 		self.references[_key].connect("ninfa_gui_fsm_request", self._gui_fsm)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if state == NINFA_GUI.STATES.GAME:
+			_gui_fsm(self, NINFA_GUI.ACTIONS.RETURN_TO_MAIN_MENU)
 
 func _on_open_menu_button_pressed() -> void:
 	_gui_fsm(self, NINFA_GUI.ACTIONS.RETURN_TO_MAIN_MENU)

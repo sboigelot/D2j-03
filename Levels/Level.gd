@@ -31,7 +31,7 @@ func _on_menu_menu_active_changed(menu_active:bool) -> void:
 	
 func set_pause(paused) -> void:
 	control_info.visible = not paused
-	#get_tree().paused = paused
+	get_tree().paused = paused
 
 func _on_plant_irrigated_changed(plant:Plant3D) -> void:
 	plant_count_invalidated = true

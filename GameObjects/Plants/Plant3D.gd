@@ -28,13 +28,17 @@ func start_tween() -> void:
 	var target_scale = irrigated_scale if irrigated else dry_scale
 	if target_scale == Vector3.ZERO:
 		target_scale = Vector3.ONE * 0.001
-		
-	tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(self, "rotation_degrees", Vector3(0,180,0), tween_duration)
-	tween.tween_property(self, "scale", target_scale, tween_duration * .75)\
-		.set_ease(Tween.EASE_IN)\
-		.set_trans(Tween.TRANS_QUAD)
 	
-	rotation_degrees = Vector3.ZERO
-	#tween.finished.connect(irrigated_changed.emit)
+	if get_child_count() == 1:
+		var visual = get_child(0)
+		var delay = randf_range(0.0, 3.0)
+		await get_tree().create_timer(delay).timeout
+		
+		tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(visual, "rotation_degrees", Vector3(0,180,0), tween_duration)
+		tween.tween_property(visual, "scale", target_scale, tween_duration * .75)\
+			.set_ease(Tween.EASE_IN)\
+			.set_trans(Tween.TRANS_QUAD)
+		
+		visual.rotation_degrees = Vector3.ZERO
