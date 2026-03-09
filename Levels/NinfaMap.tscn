@@ -8,8 +8,10 @@
 [ext_resource type="Material" uid="uid://k05drf1eukxj" path="res://Assets/Materials/ground_grass_light.material.tres" id="4_ouuts"]
 [ext_resource type="Material" uid="uid://c3lyyf8c62x0k" path="res://Assets/Materials/ground_dirt.material" id="4_t3fnf"]
 [ext_resource type="Material" uid="uid://dhk24ey8i2e48" path="res://Assets/Materials/ground_grass_dark.material.tres" id="5_ouuts"]
-[ext_resource type="Texture2D" uid="uid://ckd6xst3hcqtb" path="res://icon.svg" id="5_syhl1"]
+[ext_resource type="Texture2D" uid="uid://bmnellv51orhn" path="res://Assets/Sprites/mouse-left.png" id="5_vol6f"]
+[ext_resource type="Texture2D" uid="uid://chkjckynwfajd" path="res://Assets/Sprites/mouse-middle.png" id="6_sqrsb"]
 [ext_resource type="Material" uid="uid://c6qjsy8br0scm" path="res://Assets/Materials/canal.material" id="7_6a6ga"]
+[ext_resource type="Texture2D" uid="uid://dc6vf6mkinohd" path="res://Assets/Sprites/mouse-right.png" id="7_clm6a"]
 [ext_resource type="Material" uid="uid://vcn7qg3u051a" path="res://Assets/Materials/ground_grass_half.material.tres" id="7_yku8m"]
 [ext_resource type="Script" uid="uid://crrnkhbt4x72v" path="res://GameObjects/Water/WaterNode3D.gd" id="8_22r32"]
 [ext_resource type="Material" uid="uid://c5ess1c63dadr" path="res://Assets/Materials/water_material.material" id="9_pjmpm"]
@@ -522,8 +524,8 @@ outline_size = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.847, -7, -18)
 
 [node name="Sprite3D" type="Sprite3D" parent="ControlInfos/Node3D" unique_id=851710776]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0)
-texture = ExtResource("5_syhl1")
+transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("5_vol6f")
 
 [node name="Label3D" type="Label3D" parent="ControlInfos/Node3D" unique_id=45746856]
 transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, -1.797426, 0, -0.0035858154)
@@ -536,8 +538,8 @@ horizontal_alignment = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.847, -7, -21)
 
 [node name="Sprite3D" type="Sprite3D" parent="ControlInfos/Node3D3" unique_id=243899162]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0)
-texture = ExtResource("5_syhl1")
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
+texture = ExtResource("6_sqrsb")
 
 [node name="Label3D" type="Label3D" parent="ControlInfos/Node3D3" unique_id=1566877780]
 transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, -1.797426, 0, -0.0035858154)
@@ -550,8 +552,8 @@ horizontal_alignment = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1529999, -7, -18)
 
 [node name="Sprite3D" type="Sprite3D" parent="ControlInfos/Node3D4" unique_id=1116043951]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0)
-texture = ExtResource("5_syhl1")
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
+texture = ExtResource("7_clm6a")
 
 [node name="Label3D" type="Label3D" parent="ControlInfos/Node3D4" unique_id=376566576]
 transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, -1.797426, 0, -0.0035858154)
@@ -564,8 +566,8 @@ horizontal_alignment = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1529999, -7, -21)
 
 [node name="Sprite3D" type="Sprite3D" parent="ControlInfos/Node3D5" unique_id=2046805674]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0)
-texture = ExtResource("5_syhl1")
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
+texture = ExtResource("5_vol6f")
 
 [node name="Label3D" type="Label3D" parent="ControlInfos/Node3D5" unique_id=88249499]
 transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, -1.797426, 0, -0.0035858154)
@@ -1958,30 +1960,6 @@ shape = SubResource("ConcavePolygonShape3D_ieoe3")
 
 [node name="blockbench_export" parent="Pickables/dynamite" unique_id=1040976183 instance=ExtResource("17_m7etr")]
 
-[node name="dynamite2" type="Area3D" parent="Pickables" unique_id=1622001723]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2148416, 0, -7.7813597)
-script = ExtResource("11_q6g4c")
-object_tag = "dynamite"
-metadata/_custom_type_script = "uid://8r4kkq3srcvb"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickables/dynamite2" unique_id=1742137457]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24705887, -0.05000019)
-shape = SubResource("ConcavePolygonShape3D_pfjnu")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Pickables/dynamite2" unique_id=884057]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24705887, 0.05000019)
-shape = SubResource("ConcavePolygonShape3D_n5huw")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Pickables/dynamite2" unique_id=243078793]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099999905, 0.24705887, 0)
-shape = SubResource("ConcavePolygonShape3D_0g83p")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Pickables/dynamite2" unique_id=1971155792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03699994, 0.14999998, 0)
-shape = SubResource("ConcavePolygonShape3D_ieoe3")
-
-[node name="blockbench_export" parent="Pickables/dynamite2" unique_id=790489927 instance=ExtResource("17_m7etr")]
-
 [node name="Mecanisms" type="Node3D" parent="." unique_id=1458215954]
 
 [node name="Peak" type="Node3D" parent="Mecanisms" unique_id=1033971978]
@@ -2309,6 +2287,8 @@ material = ExtResource("9_pjmpm")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -11.434219, 0.015365757, -4.9498096)
 script = ExtResource("17_htwqe")
 broken_visual = NodePath("blockbench_export2")
+broken_sfx = "metalGate"
+repaired_sfx = "metalGate"
 metadata/_custom_type_script = "uid://cw1ge0wcut84i"
 
 [node name="blockbench_export" parent="Mecanisms/LowLandsWest/T1Gate" unique_id=836131232 instance=ExtResource("17_1c3qa")]
@@ -2591,6 +2571,8 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 transform = Transform3D(-1.3113416e-08, 0, 0.29999998, 0, 0.29999998, 0, -0.29999998, 0, -1.3113416e-08, -8.934219, 0.015365757, -13.676181)
 script = ExtResource("17_htwqe")
 broken_visual = NodePath("blockbench_export2")
+broken_sfx = "metalGate"
+repaired_sfx = "metalGate"
 metadata/_custom_type_script = "uid://cw1ge0wcut84i"
 
 [node name="blockbench_export" parent="Mecanisms/FrontHill/T2Gate" unique_id=1694199944 instance=ExtResource("17_1c3qa")]

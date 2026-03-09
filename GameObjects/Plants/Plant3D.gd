@@ -34,7 +34,8 @@ func start_tween() -> void:
 		var delay = randf_range(0.0, 2.0)
 		await get_tree().create_timer(delay).timeout
 		
-		#SfxManager.play("plants_grow")
+		if irrigated:
+			SfxManager.play("pop")
 		
 		tween = create_tween()
 		tween.set_parallel(true)

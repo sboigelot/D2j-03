@@ -177,3 +177,8 @@ func _ready() -> void:
 
 	self._set_root_buttons_to_active()
 	self.victory_rich_text_label.visible = false
+
+
+func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
+	if meta == "d2j":
+		OS.shell_open("https://d2jam.com/")

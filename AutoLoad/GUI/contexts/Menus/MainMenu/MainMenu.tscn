@@ -10,17 +10,35 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cp7q"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cp7q"]
-content_margin_left = 18.0
-content_margin_top = 18.0
-content_margin_right = 18.0
-content_margin_bottom = 18.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-corner_detail = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqomh"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25444996, 0.42, 0.23939998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug6vt"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25444996, 0.42, 0.23939998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="mainMenu" type="Control" unique_id=279321132]
 layout_mode = 3
@@ -131,14 +149,16 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_6cp7q")
 [node name="bg" type="PanelContainer" parent="credits/hpos" unique_id=1135544042]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6cp7q")
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqomh")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="credits/hpos/bg" unique_id=136768113]
 custom_minimum_size = Vector2(600, 560)
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[b][u]Contributors[/u][/b]
+text = "A game made for Down2Jam 3 in 72 hours
+
+[b][u]Contributors[/u][/b]
 [u]Togis:[/u]
 	- Puzzle Design
 	- Level Design
@@ -216,7 +236,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_6cp7q")
 [node name="bg" type="PanelContainer" parent="settings/hpos" unique_id=265720331]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6cp7q")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug6vt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="settings/hpos/bg" unique_id=1976213187]
 layout_mode = 2
@@ -248,3 +268,5 @@ text = "Thanks for playing !"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[connection signal="meta_clicked" from="credits/hpos/bg/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

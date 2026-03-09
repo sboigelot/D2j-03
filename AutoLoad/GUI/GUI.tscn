@@ -3,6 +3,39 @@
 [ext_resource type="Script" uid="uid://b508i3bj25ios" path="res://AutoLoad/GUI/GUI.gd" id="1_e0dea"]
 [ext_resource type="PackedScene" uid="uid://cy3y8cvh8bj56" path="res://AutoLoad/GUI/contexts/Menus/MainMenu/MainMenu.tscn" id="2_6fgwi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0dea"]
+bg_color = Color(0.25444996, 0.42, 0.23939998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fgwi"]
+bg_color = Color(0.43137255, 0.2, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4fh0"]
+bg_color = Color(0.25800002, 0.6, 0.32640004, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="GUI" type="CanvasLayer" unique_id=857789566]
 layer = 10
 script = ExtResource("1_e0dea")
@@ -10,10 +43,14 @@ script = ExtResource("1_e0dea")
 [node name="mainMenu" parent="." unique_id=279321132 instance=ExtResource("2_6fgwi")]
 
 [node name="OpenMenuButton" type="Button" parent="." unique_id=2145938385]
-offset_left = 1857.0
+custom_minimum_size = Vector2(80, 0)
+offset_left = 1827.0
 offset_top = 1039.0
-offset_right = 1910.0
+offset_right = 1907.0
 offset_bottom = 1070.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0dea")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6fgwi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x4fh0")
 text = "Menu"
 
 [connection signal="pressed" from="OpenMenuButton" to="." method="_on_open_menu_button_pressed"]
