@@ -58,4 +58,5 @@ func _start_change_rotation() -> void:
 	rotation_tween.tween_property(self, "rotation_degrees", desired_rotation, 1.0)\
 					.set_ease(Tween.EASE_OUT)\
 					.set_trans(Tween.TRANS_LINEAR)
-	rotation_tween.finished.connect(propagate_water_downstream)
+	await rotation_tween.finished
+	propagate_water_downstream()

@@ -76,6 +76,11 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 
+[node name="fullscreen" parent="root/vpos/rootButtons/vpos" unique_id=1584076471 instance=ExtResource("1_5aubx")]
+layout_mode = 2
+toggle_mode = true
+text = "Fullscreen"
+
 [node name="start" parent="root/vpos/rootButtons/vpos" unique_id=1788893900 instance=ExtResource("1_5aubx")]
 layout_mode = 2
 text = "Start"

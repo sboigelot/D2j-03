@@ -31,7 +31,7 @@ func start_tween() -> void:
 	
 	if get_child_count() == 1:
 		var visual = get_child(0)
-		var delay = randf_range(0.0, 3.0)
+		var delay = randf_range(0.0, 2.0)
 		await get_tree().create_timer(delay).timeout
 		
 		tween = create_tween()

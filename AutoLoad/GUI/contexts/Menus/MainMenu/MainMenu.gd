@@ -9,6 +9,10 @@ var _credtisDefaultPosition : Vector2 = Vector2(0, 0)
 var _settingsDefaultPosition : Vector2 = Vector2(0, 0)
 
 @onready var _buttonReferences : Dictionary = {
+	"fullscreen": {
+		"reference": $root/vpos/rootButtons/vpos/fullscreen,
+		"callback": _on_fullscreen_button_pressed
+	},
 	"start": {
 		"reference": $root/vpos/rootButtons/vpos/start,
 		"callback": _on_start_button_pressed
@@ -94,6 +98,9 @@ func _toggle_settings() -> void:
 	if _tmp_stateBefore:
 		self._settings.visible = false
 
+func _toggle_fullscreen() -> void:
+	FullscreenHelper.toggle_fullscreen_mode()
+
 ###############################################################################
 ###############################################################################
 ## SECTION: Public Member Functions ###########################################
@@ -135,7 +142,10 @@ func _on_credits_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
 	self._toggle_settings()
-
+	
+func _on_fullscreen_button_pressed() -> void:
+	self._toggle_fullscreen()
+	
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
@@ -158,5 +168,7 @@ func _ready() -> void:
 		self._buttonReferences[_key].reference.initialize(
 			self._buttonReferences[_key].callback
 		)
+		
+	self._buttonReferences["fullscreen"].reference.button_pressed = FullscreenHelper.is_fullscreen()
 
 	self._set_root_buttons_to_active()

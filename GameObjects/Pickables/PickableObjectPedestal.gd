@@ -44,6 +44,8 @@ signal deactivated(object_pedestal:PickableObjectPedestal)
 		
 @export var activated_material:StandardMaterial3D
 
+@export var auto_center_pickable_marker_3d:Marker3D
+
 @export var controlled_water_flow:Array[WaterNode3D]
 @export var controlled_mechanisms:Array[Mechanism3D]
 @export var controlled_repairables:Array[RepairableNode3D]
@@ -96,6 +98,8 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 				if destroy_token_on_activated:
 					if area is PickableObject:
 						area.queue_free()
+				elif auto_center_pickable_marker_3d != null:
+					area.global_position = auto_center_pickable_marker_3d.global_position
 						
 				if destroy_self_on_activated:
 					queue_free()
