@@ -27,6 +27,8 @@
 [ext_resource type="Script" uid="uid://ckicwxp4b8v2c" path="res://Levels/ManualPump.gd" id="19_0xqdu"]
 [ext_resource type="Script" uid="uid://ctbnu3r0dmkb" path="res://Levels/DrawBridge.gd" id="24_vgw30"]
 [ext_resource type="PackedScene" uid="uid://bw788s4upjxvd" path="res://Assets/Models/reservoir.glb" id="25_btstg"]
+[ext_resource type="Script" uid="uid://s08fxfxe44nw" path="res://GameObjects/Plants/Plant3D.gd" id="28_adm7q"]
+[ext_resource type="PackedScene" uid="uid://cj4hpfeovyurb" path="res://Assets/Models/fern-big.glb" id="29_i8sri"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsxap"]
 sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
@@ -1181,10 +1183,11 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.0
 size = Vector3(2.690503, 0.31, 0.6)
 material = ExtResource("7_6a6ga")
 
-[node name="water_node" type="Node3D" parent="Terrain/CSGCombiner3D/Canals/CSGBox3D36" unique_id=530626590 node_paths=PackedStringArray("downstream", "mechanisms")]
+[node name="water_node" type="Node3D" parent="Terrain/CSGCombiner3D/Canals/CSGBox3D36" unique_id=530626590 node_paths=PackedStringArray("downstream", "mechanisms", "plants")]
 script = ExtResource("8_22r32")
 downstream = [NodePath("../../CSGBox3D35/water_node")]
 mechanisms = [NodePath("../../../../../Mecanisms/Plateau/WaterGate2")]
+plants = [NodePath("../../../../../Plants/Plant3D")]
 water_size = Vector3(2.690503, 0.31, 0.6)
 material = ExtResource("9_pjmpm")
 
@@ -2203,5 +2206,15 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 0, 1, 1)
 text = "Test"
 script = ExtResource("16_e1fsn")
+
+[node name="Plants" type="Node3D" parent="." unique_id=1196766605]
+
+[node name="Plant3D" type="Node3D" parent="Plants" unique_id=2138650120]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.558, 2, 7.064)
+script = ExtResource("28_adm7q")
+irrigated = true
+metadata/_custom_type_script = "uid://s08fxfxe44nw"
+
+[node name="blockbench_export" parent="Plants/Plant3D" unique_id=15569629 instance=ExtResource("29_i8sri")]
 
 [editable path="Mecanisms/LowLandEast/DrawBridgeWaterWheel/blockbench_export"]

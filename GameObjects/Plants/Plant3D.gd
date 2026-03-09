@@ -13,14 +13,15 @@ signal irrigated_changed(plant:Plant3D)
 		
 @export var dry_scale: Vector3 = Vector3.ZERO
 @export var irrigated_scale: Vector3 = Vector3.ONE
+@export var tween_duration: float = 0.5
 
 var tween:Tween
 
 func _on_irrigated_changed() -> void:
-	start_tween(1.5)
+	start_tween()
 	irrigated_changed.emit(self)
 	
-func start_tween(durantion:float = 1.0) -> void:
+func start_tween() -> void:
 	if tween != null and tween.is_running():
 		tween.stop()
 	
@@ -30,9 +31,9 @@ func start_tween(durantion:float = 1.0) -> void:
 		
 	tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(self, "rotation_degrees", Vector3(0,360,0), durantion)
-	tween.tween_property(self, "scale", target_scale, 1.0)\
-		.set_ease(Tween.EASE_OUT)\
+	tween.tween_property(self, "rotation_degrees", Vector3(0,180,0), tween_duration)
+	tween.tween_property(self, "scale", target_scale, tween_duration * .75)\
+		.set_ease(Tween.EASE_IN)\
 		.set_trans(Tween.TRANS_QUAD)
 	
 	rotation_degrees = Vector3.ZERO
