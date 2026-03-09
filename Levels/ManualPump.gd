@@ -1,3 +1,4 @@
+@tool
 class_name ManualPump
 extends Mechanism3D
 

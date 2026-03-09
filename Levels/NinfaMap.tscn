@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btbapy82k738d" path="res://GameObjects/Pickables/PickableObjectController.gd" id="1_elb2t"]
 [ext_resource type="Script" uid="uid://dgv5q6b2tems7" path="res://Levels/Level.gd" id="1_i8sri"]
 [ext_resource type="Script" uid="uid://co0xkfphq1e30" path="res://GameObjects/Camera/NinfaCameraController.gd" id="2_elb2t"]
+[ext_resource type="PackedScene" uid="uid://cw8m0f6lmf7e4" path="res://Levels/TvUi.tscn" id="2_uqxxu"]
 [ext_resource type="Script" uid="uid://bjsf6caogbjsg" path="res://GameObjects/Camera/ToolCamera3D.gd" id="3_8rtkp"]
 [ext_resource type="Material" uid="uid://k05drf1eukxj" path="res://Assets/Materials/ground_grass_light.material.tres" id="4_ouuts"]
 [ext_resource type="Material" uid="uid://c3lyyf8c62x0k" path="res://Assets/Materials/ground_dirt.material" id="4_t3fnf"]
@@ -28,8 +29,11 @@
 [ext_resource type="Script" uid="uid://ckicwxp4b8v2c" path="res://Levels/ManualPump.gd" id="19_0xqdu"]
 [ext_resource type="Script" uid="uid://ctbnu3r0dmkb" path="res://Levels/DrawBridge.gd" id="24_vgw30"]
 [ext_resource type="PackedScene" uid="uid://bw788s4upjxvd" path="res://Assets/Models/reservoir.glb" id="25_btstg"]
-[ext_resource type="Script" uid="uid://s08fxfxe44nw" path="res://GameObjects/Plants/Plant3D.gd" id="28_adm7q"]
 [ext_resource type="PackedScene" uid="uid://cj4hpfeovyurb" path="res://Assets/Models/fern-big.glb" id="29_i8sri"]
+[ext_resource type="Script" uid="uid://s08fxfxe44nw" path="res://GameObjects/Plants/Plant3D.gd" id="30_uqxxu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dqxci"]
+viewport_path = NodePath("ControlInfos/TV/SubViewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsxap"]
 sky_top_color = Color(0.6388706, 0.70131785, 0.7848583, 1)
@@ -259,8 +263,47 @@ _data = {
 }
 point_count = 10
 
-[node name="NinfaMap" type="Node3D" unique_id=1400283384]
+[node name="NinfaMap" type="Node3D" unique_id=1400283384 node_paths=PackedStringArray("control_info", "tvui", "plants_placeholder")]
 script = ExtResource("1_i8sri")
+control_info = NodePath("ControlInfos")
+tvui = NodePath("ControlInfos/TV/SubViewport/TvUi")
+plants_placeholder = NodePath("Plants")
+
+[node name="ControlInfos" type="Node3D" parent="." unique_id=1631137494]
+
+[node name="Label3D" type="Label3D" parent="ControlInfos" unique_id=45746856]
+transform = Transform3D(-1, 3.821371e-15, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 0, -7.1, -20.6414)
+text = "MLB: Move camera
+MW: Zoom
+MRB: Rotate
+Click: Interract"
+font_size = 256
+outline_size = 24
+
+[node name="Label3D2" type="Label3D" parent="ControlInfos" unique_id=700826654]
+transform = Transform3D(4.371139e-08, -1, 4.3711385e-08, 8.742278e-08, 4.371139e-08, 1, -1, -4.3711385e-08, 8.742278e-08, 20, -7.1, 0)
+text = "Manipulate the water
+Irrigate all the plants
+Start in the middle"
+font_size = 256
+outline_size = 24
+
+[node name="TV" type="Node3D" parent="ControlInfos" unique_id=658143839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005556464, 3.2450757, -2.5152638)
+
+[node name="SubViewport" type="SubViewport" parent="ControlInfos/TV" unique_id=1630290291]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="TvUi" parent="ControlInfos/TV/SubViewport" unique_id=1781943779 instance=ExtResource("2_uqxxu")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ControlInfos/TV" unique_id=1593111399]
+size = Vector3(3.1, 1.8, 0.1)
+material = ExtResource("7_yku8m")
+
+[node name="Sprite3D" type="Sprite3D" parent="ControlInfos/TV" unique_id=1013036091]
+transform = Transform3D(-0.625, 0, 9.4372375e-08, 0, 0.625, 0, -9.4372375e-08, 0, -0.625, 0, 0, -0.1)
+texture = SubResource("ViewportTexture_dqxci")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1944224997]
 environment = SubResource("Environment_j6adh")
@@ -2215,11 +2258,12 @@ script = ExtResource("16_e1fsn")
 
 [node name="Plants" type="Node3D" parent="." unique_id=1196766605]
 
-[node name="Plant3D" type="Node3D" parent="Plants" unique_id=2138650120]
+[node name="Plant3D" type="Node3D" parent="Plants" unique_id=1368786118]
 transform = Transform3D(-0.001, 0, -8.742278e-11, 0, 0.001, 0, 8.742278e-11, 0, -0.001, -2.558, 2, 7.064)
-script = ExtResource("28_adm7q")
+script = ExtResource("30_uqxxu")
 metadata/_custom_type_script = "uid://s08fxfxe44nw"
 
 [node name="blockbench_export" parent="Plants/Plant3D" unique_id=15569629 instance=ExtResource("29_i8sri")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [editable path="Mecanisms/LowLandEast/DrawBridgeWaterWheel/blockbench_export"]

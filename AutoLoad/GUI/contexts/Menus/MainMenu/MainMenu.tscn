@@ -91,6 +91,7 @@ theme_override_constants/separation = 42
 theme_override_styles/separator = SubResource("StyleBoxEmpty_k4fjg")
 
 [node name="credits" type="CenterContainer" parent="." unique_id=1593899036]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -138,6 +139,7 @@ text = "[b][u]Contributors[/u][/b]
 			switch_005.ogg"
 
 [node name="settings" type="CenterContainer" parent="." unique_id=1877202391]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0

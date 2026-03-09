@@ -38,4 +38,6 @@ func start_tween() -> void:
 	
 	rotation_degrees = Vector3.ZERO
 	#tween.finished.connect(irrigated_changed.emit)
-	
+
+func register_in_level(level:Level) -> void:
+	level.register_plant(self)

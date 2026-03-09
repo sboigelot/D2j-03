@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cw8m0f6lmf7e4"]
+
+[ext_resource type="Script" uid="uid://cuv47vsdufyft" path="res://Levels/TvUi.gd" id="1_qkb63"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwyws"]
+bg_color = Color(0.53224236, 0.53224236, 0.53224236, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkb63"]
+bg_color = Color(0.4313562, 0.19824821, 0.032396473, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbdee"]
+bg_color = Color(0.3503636, 0.579907, 0.3295423, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TvUi" type="PanelContainer" unique_id=1781943779 node_paths=PackedStringArray("irrigated_progress_bar")]
+custom_minimum_size = Vector2(480, 270)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hwyws")
+script = ExtResource("1_qkb63")
+irrigated_progress_bar = NodePath("MarginContainer/CenterContainer/VBoxContainer/ProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1365553155]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=1826259282]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=1105777343]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=347704028]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Plants irrigated"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=726652194]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_qkb63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dbdee")
+max_value = 1.0
+value = 0.5
