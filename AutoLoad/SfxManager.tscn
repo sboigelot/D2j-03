@@ -6,5 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://du2wdyc6ooqn7" path="res://Assets/SoundFx/switch_005.ogg" id="4_gxvsj"]
 
 [node name="SfxManager" type="Node" unique_id=561477171]
+process_mode = 3
 script = ExtResource("1")
 sample_collection = Array[AudioStream]([ExtResource("2_mq01n"), ExtResource("3_s041m"), ExtResource("4_gxvsj")])

@@ -4,13 +4,20 @@ var loader: = ResourceAsyncLoader.new()											# Instance of resource async l
 
 @export var start_player_count: int = 3											# Starting amount of AudioStreamPlayers
 @export var bus_name: String = 'SFX'										# Name of the bus sample players will be aassigned to, if wrong defaults to Master
+
+@export_category("SFX")
 @export var sample_collection: Array[AudioStream]								# If added in scene, can preload from Inspector
 var sample_dictionary: = {}														# Holds loaded samples
 
-@export var retrigger_time: float = 1.0/60.0*2							# Choose time when same sample can be triggered again
 @onready var players: = get_children()
 @onready var free_players: = players												# List of AudioStreamPlayer not playing sounds
 var active_players: = {}														# List of AudioStreamPlayer playing samples
+
+@export_category("Ambiance")
+@export var ambiance_collection: Array[String]
+@export var ambiance_min_ferquency_sec: float = 3.0
+@export var ambiance_max_ferquency_sec: float = 20.0
+var current_ambiance_delay_msec:float = -1.0
 
 func add_players(value:int)->void:
 	for i in value:
@@ -29,10 +36,8 @@ func player_play(sample_name, _player_id):
 	play(sample_name)
 
 func play(sample_name:String)->void:
-#	print("playing %s"%sample_name)
 	if active_players.has(sample_name):											# Same sample is already playing
 		var player:AudioStreamPlayer = active_players[sample_name]
-		#if player.get_playback_position() > retrigger_time:						# Checks if same sample has played at least certain length
 		player.play()
 	else:
 		if !free_players.is_empty():												# There are un-active players
@@ -56,3 +61,13 @@ func sample_finished(sample_name:String)->void:									# Triggered when player 
 	player.disconnect("finished", Callable(self, "sample_finished"))
 	active_players.erase(sample_name)
 	free_players.append(player)
+
+func _process(delta: float) -> void:
+	if ambiance_collection.size() > 0:
+		if current_ambiance_delay_msec <= 0:
+			current_ambiance_delay_msec = randf_range(ambiance_min_ferquency_sec, ambiance_max_ferquency_sec)
+			return
+		current_ambiance_delay_msec -= delta
+		if current_ambiance_delay_msec <= 0:
+			var ambiance_sfx = ambiance_collection.pick_random()
+			play(ambiance_sfx)
