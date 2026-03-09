@@ -51,6 +51,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="title" type="CenterContainer" parent="root/vpos" unique_id=1053731470]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -62,6 +63,7 @@ text = "Terra
 Ninfa"
 
 [node name="HSeparator" type="HSeparator" parent="root/vpos" unique_id=1163778077]
+visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 2
@@ -193,3 +195,20 @@ fit_content = true
 
 [node name="MarginContainer" parent="settings/hpos/bg/VBoxContainer" unique_id=353658323 instance=ExtResource("3_iqomh")]
 layout_mode = 2
+
+[node name="VictoryRichTextLabel" type="RichTextLabel" parent="." unique_id=235729704]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.5
+offset_right = 233.5
+offset_bottom = 175.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 72
+text = "Thanks for playing !"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

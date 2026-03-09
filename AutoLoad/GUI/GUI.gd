@@ -4,7 +4,7 @@ signal ninfa_gui_menu_active(menu_active:bool)
 
 var state : int = NINFA_GUI.STATES.MAIN_MENU
 
-@onready var open_menu_button: Button = $MarginContainer/OpenMenuButton
+@onready var open_menu_button: Button = $OpenMenuButton
 
 @onready var references : Dictionary = {
 	str(NINFA_GUI.STATES.MAIN_MENU): $mainMenu
@@ -35,6 +35,7 @@ func _gui_fsm(a_sender, a_request) -> void:
 			self.references[str(NINFA_GUI.STATES.MAIN_MENU)].reveal_transition()
 			self.state = NINFA_GUI.STATES.MAIN_MENU
 			self.open_menu_button.visible = false
+			
 
 ###############################################################################
 ###############################################################################
@@ -56,4 +57,15 @@ func _process(_delta: float) -> void:
 			_gui_fsm(self, NINFA_GUI.ACTIONS.RETURN_TO_MAIN_MENU)
 
 func _on_open_menu_button_pressed() -> void:
+	_gui_fsm(self, NINFA_GUI.ACTIONS.RETURN_TO_MAIN_MENU)
+
+###############################################################################
+###############################################################################
+## SECTION: Public ############################################################
+###############################################################################
+###############################################################################
+
+func trigger_victory() -> void:
+	var main_menu = self.references[str(NINFA_GUI.STATES.MAIN_MENU)]
+	main_menu.victory_rich_text_label.visible = true
 	_gui_fsm(self, NINFA_GUI.ACTIONS.RETURN_TO_MAIN_MENU)

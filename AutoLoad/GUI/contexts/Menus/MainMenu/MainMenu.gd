@@ -8,6 +8,8 @@ extends NinfaMenu
 var _credtisDefaultPosition : Vector2 = Vector2(0, 0)
 var _settingsDefaultPosition : Vector2 = Vector2(0, 0)
 
+@onready var victory_rich_text_label: RichTextLabel = $VictoryRichTextLabel
+
 @onready var _buttonReferences : Dictionary = {
 	"fullscreen": {
 		"reference": $root/vpos/rootButtons/vpos/fullscreen,
@@ -136,7 +138,9 @@ func hide_transition() -> void:
 func _on_start_button_pressed() -> void:
 	print("Start button pressed")
 	emit_signal("ninfa_gui_fsm_request", self, NINFA_GUI.ACTIONS.START_GAME)
-
+	await self._tween.finished
+	self._buttonReferences["start"].reference.text = "Continue"
+	
 func _on_credits_button_pressed() -> void:
 	self._toggle_credits()
 
@@ -172,3 +176,4 @@ func _ready() -> void:
 	self._buttonReferences["fullscreen"].reference.button_pressed = FullscreenHelper.is_fullscreen()
 
 	self._set_root_buttons_to_active()
+	self.victory_rich_text_label.visible = false

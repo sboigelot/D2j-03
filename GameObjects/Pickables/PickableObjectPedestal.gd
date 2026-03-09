@@ -62,9 +62,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if detection_area3d == null:
 		warnings.append("Area3D child is missing")
 	
-	if activation_visual == null:
-		warnings.append("activation_visual child is missing")
-	else:
+	if activation_visual != null:
+		#warnings.append("activation_visual child is missing")
+	#else:
 		var properties:Array[Dictionary] = activation_visual.get_property_list()
 		var has_material_property = properties.any(
 			func(dic:Dictionary): return dic["name"] == "material"
