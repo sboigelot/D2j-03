@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://AudioBusLayout.tres"
+buses/default_bus_layout="uid://mgwoyfk6b6lj"
 
 [autoload]
 
@@ -84,6 +84,7 @@ camera_mouse_move={
 [layer_names]
 
 3d_physics/layer_2="pickable_objects"
+3d_physics/layer_3="mouse_drag_cam"
 
 [rendering]
 

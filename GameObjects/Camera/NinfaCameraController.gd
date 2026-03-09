@@ -159,6 +159,8 @@ func get_mouse_world_position() -> Vector3:
 	var ray_length := camera.far
 	var end := origin + direction * ray_length
 	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.collision_mask = 1 << 2
+	
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(query)
 	var collided = result.has("collider") 
